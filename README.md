@@ -10,9 +10,9 @@
 
 ### Function Declaration & Function Expression
 
--   Difference btw these.
-    Function Declaration log in completly.
-    Space is reserve for Expression but is not asigned a function yet.
+-   Difference between these.
+    Function Declaration logs in completely.
+    Space is reserved for Expression, but it is not assigned a function yet.
 
 ### Event Bubbling
 
