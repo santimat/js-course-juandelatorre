@@ -84,6 +84,9 @@ img {
     justify-content: space-between;
     align-items: center;
 }
+.navegacion {
+    padding: 2rem;
+}
 .navegacion a {
     color: var(--claro);
     text-decoration: none;
