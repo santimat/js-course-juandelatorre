@@ -22,12 +22,12 @@ search.addEventListener("input", (e) => {
     console.log(e.target.value);
 });
 
-// copy something
+// run when the user copies something from an input
 search.addEventListener("copy", (e) => {
     e.preventDefault(); // blocked copy with ctrl+c for the users
 });
 
-// for stop Event Bubblig using e.stopPropagation()
+// to stop Event Bubblig using e.stopPropagation()
 
 const cards = document.querySelectorAll(".hacer .card");
 const infoDivs = document.querySelectorAll(".hacer .card .info");
@@ -39,7 +39,8 @@ cards.forEach((c) => {
 });
 
 infoDivs.forEach((iD) => {
-    iD.addEventListener("click", () => {
+    iD.addEventListener("click", (e) => {
+        e.stopPropagation();
         console.log("im a div with information");
     });
 });
