@@ -1,5 +1,6 @@
 const $ = (query) => document.querySelector(query);
 const $$ = (query) => document.querySelectorAll(query);
+
 // runs when the HTML document is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
     // Object to save email information, which will be sent
@@ -28,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     form.addEventListener("submit", sendEmail);
-
     function sendEmail(e) {
         e.preventDefault();
 
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const reference = input.parentElement;
 
         // the trim method is used to clear white spaces at the start or end of input value
-        if (input.value.trim() === "") {
+        if (input.value.trim() === "" && input.id != "cc") {
             showAlert(`El campo ${input.id} es obligatorio`, reference);
             email[input.name] = "";
             checkEmail();
@@ -75,6 +75,16 @@ document.addEventListener("DOMContentLoaded", () => {
         if (input.id == "email" && !validateEmail(input.value)) {
             showAlert("Email no valido", reference);
             email[input.name] = "";
+            checkEmail();
+            return;
+        }
+
+        if (
+            input.id == "cc" &&
+            input.value != "" &&
+            !validateEmail(input.value)
+        ) {
+            showAlert("Destinatario extra no valido", reference);
             checkEmail();
             return;
         }
@@ -126,6 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function resetForm() {
+        email.cc = "";
         email.email = "";
         email.message = "";
         email.subject = "";
