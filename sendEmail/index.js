@@ -1,26 +1,93 @@
+const $ = (query) => document.querySelector(query);
+const $$ = (query) => document.querySelectorAll(query);
 // runs when the HTML document is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
+    // Object to save email information, which will be sent
+    const email = {
+        email: "",
+        message: "",
+        subject: "",
+    };
+
     // Selecting the interface elements
-    const inputs = document.querySelectorAll(".form-input");
+    const inputs = $$(".form-input");
+    const form = $("#formulario");
+    const submitBtn = $("#formulario button[type='submit']");
+    const resetBtn = $("#formulario button[type='reset']");
+    const spinner = $("#spinner");
 
     // set events, some of these events are usually used for verification of email fields
     // blur event is executed when the user leaves a field
-    inputs.forEach((i) => i.addEventListener("blur", validate));
+    inputs.forEach((i) => i.addEventListener("input", validate));
+
+    resetBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        // reset the email object
+        resetForm();
+    });
+
+    form.addEventListener("submit", sendEmail);
+
+    function sendEmail(e) {
+        e.preventDefault();
+
+        spinner.classList.remove("hidden");
+
+        setTimeout(() => {
+            spinner.classList.add("hidden");
+
+            const successAlert = document.createElement("P");
+            successAlert.classList.add(
+                "bg-green-500",
+                "text-white",
+                "p-2",
+                "text-center",
+                "rounded-lg",
+                "mt-10",
+                "font-bold",
+                "text-sm",
+                "uppercase"
+            );
+            successAlert.textContent = "Mensaje enviado correctamente";
+            form.appendChild(successAlert);
+
+            setTimeout(() => {
+                successAlert.remove();
+            }, 2000);
+        }, 1500);
+
+        resetForm();
+    }
 
     function validate(e) {
-        const reference = e.target.parentElement;
+        const input = e.target;
+
+        const reference = input.parentElement;
 
         // the trim method is used to clear white spaces at the start or end of input value
-        if (e.target.value.trim() === "") {
-            showAlert(`El campo ${e.target.id} es obligatorio`, reference);
+        if (input.value.trim() === "") {
+            showAlert(`El campo ${input.id} es obligatorio`, reference);
+            email[input.name] = "";
+            checkEmail();
             return;
         }
-        if (e.target.id == "email" && !validateEmail(e.target.value)) {
+        if (input.id == "email" && !validateEmail(input.value)) {
             showAlert("Email no valido", reference);
+            email[input.name] = "";
+            checkEmail();
             return;
         }
 
+        // When the input value is not "", remove the alerts
         removeAlert(reference);
+
+        // Saves the data in the email object
+        // each property is accesesed by the name attribute of each input
+        email[input.name] = input.value.trim(); // trim to clear white spaces at the start or end
+
+        // Check the email object
+        checkEmail();
     }
 
     function showAlert(msg, reference) {
@@ -45,5 +112,23 @@ document.addEventListener("DOMContentLoaded", () => {
     function validateEmail(email) {
         const regex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
         return regex.test(email);
+    }
+
+    function checkEmail() {
+        // if the values in the email object aren't empty removes disabled attribute to submit button
+        if (!Object.values(email).includes("")) {
+            submitBtn.classList.remove("opacity-50");
+            submitBtn.disabled = false;
+            return;
+        }
+        submitBtn.classList.add("opacity-50");
+        submitBtn.disabled = true;
+    }
+
+    function resetForm() {
+        email.email = "";
+        email.message = "";
+        email.subject = "";
+        form.reset();
     }
 });

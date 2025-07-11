@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Envio de Emails</title>
         <link rel="stylesheet" href="dist/app.css" />
+        <link rel="stylesheet" href="dist/spinner.css" />
         <script type="module" src="index.js"></script>
     </head>
     <body class="min-h-screen bg-slate-300">
@@ -33,7 +34,7 @@
                         <input
                             id="asunto"
                             type="text"
-                            name="asunto"
+                            name="subject"
                             placeholder="Asunto Email"
                             class="border border-gray-300 px-3 py-2 rounded-lg form-input"
                         />
@@ -46,7 +47,7 @@
                         <textarea
                             id="mensaje"
                             type="text"
-                            name="mensaje"
+                            name="message"
                             placeholder="Mensaje de Email"
                             class="border border-gray-300 px-3 py-2 rounded-lg h-36 form-input"
                         ></textarea>
@@ -97,6 +98,16 @@
                         </button>
                     </div>
                 </form>
+                <div id="spinner" class="flex justify-center mt-10 hidden">
+                    <div class="sk-chase">
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                        <div class="sk-chase-dot"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
