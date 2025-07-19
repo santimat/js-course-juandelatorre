@@ -1,20 +1,21 @@
-h1, h2 {
+h1,
+h2 {
     text-align: center;
 }
 
-#contenido {
-    margin-top: 40px;
+#content {
+    margin-top: 20rem;
 }
-.borrar-tweet,
-.borrar-tweet:hover {
+.borrar-todo,
+.borrar-todo:hover {
     float: right;
     cursor: pointer;
-    color: red;
+    color: rgb(175, 0, 0);
     font-weight: bold;
 }
 
 .error {
-    background-color: red;
+    background-color: rgb(175, 0, 0);
     text-align: center;
     padding: 10px;
     text-transform: uppercase;
@@ -22,4 +23,15 @@ h1, h2 {
     max-width: 400px;
     margin: 0 auto;
     color: white;
+    border-radius: 0.5rem;
+}
+.empty {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: #555;
+}
+textarea {
+    overflow: auto;
+    resize: none;
 }
