@@ -23,3 +23,4 @@
 ### Prototypes
 
 -   The prototypes work like as templates for native data types, which inherit methods from them.
+    The use of the prototypes is helpful to
