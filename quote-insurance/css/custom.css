@@ -35,7 +35,7 @@ header {
     text-align: center;
     color: #f4511e;
 }
-.correcto {
+.correct {
     background-color: rgb(211, 249, 187);
     border: 1px solid rgb(50, 167, 0);
     padding: 10px;
@@ -45,6 +45,10 @@ header {
 }
 .error p {
     margin: 0;
+}
+.error,
+.correct {
+    border-radius: 0.5rem;
 }
 #content {
     margin-top: 60px;
