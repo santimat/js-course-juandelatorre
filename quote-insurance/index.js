@@ -1,6 +1,5 @@
 // Utils
 const $ = (query) => document.querySelector(query);
-const $$ = (query) => document.querySelectorAll(query);
 
 // Constructors
 function Secure(brand, year, type) {
@@ -103,6 +102,25 @@ UI.prototype.showAlerts = (msg, type) => {
 };
 
 UI.prototype.showResult = (secure, total) => {
+    // Destructuring
+    let { brand, year, type } = secure;
+
+    // "+" in front of the brand to convert to a number
+    // Use switch to assign the right brand name depending on the number selected
+    switch (+brand) {
+        case 1:
+            brand = "American";
+            break;
+        case 2:
+            brand = "Chinese";
+            break;
+        case 3:
+            brand = "European";
+            break;
+        default:
+            break;
+    }
+
     // Create the result
     const resultDiv = $("#result");
     if (resultDiv.firstChild) {
@@ -113,7 +131,10 @@ UI.prototype.showResult = (secure, total) => {
     div.classList.add("mt-10");
     div.innerHTML = `
     <p class="header">Your resume</p> 
-    <p class="font-bold">Total: ${total}</p> 
+    <p class="font-bold">Brand: <span class='font-normal'>${brand}</span></p> 
+    <p class="font-bold">Year: <span class='font-normal'>${year}</span></p> 
+    <p class="font-bold">Type: <span class='font-normal'>${type}</span></p> 
+    <p class="font-bold">Total: <span class='font-normal'>$${total}</span></p>
     `;
     // Show spinner
     const spinner = $("#loading");
