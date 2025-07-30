@@ -24,3 +24,11 @@
 
 -   The prototypes work like as templates for native data types, which inherit methods from them.
     The use of the prototypes is helpful to
+
+### OOP
+
+-   Object Oriented Pogramming is a programming paradigm based on objects.
+-   Within the OOP there are privated properties, public and protected properties.
+    -   Public, make posible the access within the class or in the object.
+    -   Private, the access is posible only within the class.
+    -
