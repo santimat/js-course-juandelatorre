@@ -23,6 +23,8 @@ header {
 }
 #expenses {
     margin-bottom: 30px;
+    max-height: 300px;
+    overflow: auto;
 }
 h1 {
     font-family: "Raleway", sans-serif;
