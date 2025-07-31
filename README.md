@@ -1,4 +1,4 @@
-# Curso de JavaScript con 20 Proyectos
+# JavaScript Course with 20 projects
 
 ### Primitivos
 
