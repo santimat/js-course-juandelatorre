@@ -85,6 +85,10 @@ class AdminAppointment {
             appointmentsContainer.firstChild.remove();
         }
 
+        if (!this.appointments.length) {
+            appointmentsContainer.innerHTML = `<p class="text-xl mt-5 mb-10 text-center">No patients yet</p>`;
+        }
+
         // Generate the appointments
         this.appointments.forEach((appointment) => {
             const { id } = appointment;
